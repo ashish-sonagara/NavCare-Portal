@@ -1,0 +1,292 @@
+#nav_bar { 
+    background-color: rgba(52, 168, 83, 0.2);
+    height: 62px;
+    color: white;
+    padding-left: 45px;
+    padding-right: 30px;
+}
+#search {
+    width: 275px;
+    border: 1px solid rgb(25, 135, 84, 0.8);
+}
+#nav_2 { 
+    height: 50px;
+    padding-right: 30px;
+    background-color: rgb(25, 135, 84,0.8);
+}
+.nav_bar2:hover {
+    background-color: rgb(181, 243, 179);
+    border-radius: 5px;
+    border-bottom: 2px solid #00000033;
+    color:black
+}
+.nav_bar2 a {
+    color: rgb(255, 255, 255);
+}
+.nav_bar2 a:hover{
+    color: black;
+}
+
+/* .................MAIN CONTENT style.................. */
+.main_container {
+    padding: 25px;
+    /* margin-top: 2px; */
+    height: 600px;
+    width: auto;
+    background-color: #ECF8F2;
+}
+.text {
+    margin: 25px 75px;
+    height: 200px;
+    width: auto;
+}
+.box_container {
+    display: flex;
+    justify-content: space-around;
+    /* flex-wrap: wrap; */
+    padding: 0px 25px;
+}
+.boxes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 250px;
+    width: 250px;
+    background-color: rgb(255, 255, 255);
+    margin: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
+}
+.sidebar_container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* width: 19%; */
+    background-color: rgb(255, 255, 255);
+    padding-top: 50px;
+    /* margin-right: 3.5%; */
+    padding-right: 0px !important;
+}
+.sidebar_container a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    height: 12%;
+    /* width: 100%; */
+    /* background-color: aqua; */
+    margin-top: 1px;
+}
+.sidebar_container a:hover {
+    background-color: #ddf6e9;
+    border-left: 2px solid #198754;
+    border-right: 2px solid #198754;
+}
+.sidebar_container a.active {
+    background-color: #ddf6e9;
+    border-left: 3px solid #198754;
+    border-right: 3px solid #198754;
+}
+/* .....................PROGRESS BAR CSS................... */
+.progress_bar {
+    margin-top: 1%;
+    margin-left: 29%;
+    width: 45%;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    counter-reset: step;
+    height: 10%;
+    z-index: 0;
+}
+
+.progress_bar::before {
+    content: "";
+    position: absolute;
+    top: 38%;
+    transform: translateY(-40%);
+    width: 100%;
+    height: 2px;
+    background-color: rgb(173, 167, 167);
+}
+
+#progress {
+    content: "";
+    position: absolute;
+    top: 40%;
+    transform: translateY(-60%);
+    height: 4px;
+    background-color: #40916c;
+    width: 0%;
+    z-index: -1;
+    transition: 0.6s ease;
+}
+
+.progress-steps {
+    height: 40px;
+    width: 40px;
+    background-color: #dcdcdc;
+    border-radius: 50%;
+    border: 2px solid #cfc0cf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.progress-steps::before {
+    counter-increment: step;
+    content: counter(step);
+    font-weight: bold;
+}
+
+.progress-steps::after {
+    content: attr(data-title);
+    position: absolute;
+    top: 110%;
+    font-size: 14px;
+    color: #666;
+    white-space: nowrap;
+}
+
+.progress_active {
+    background-color: #8eebbe;
+    color: #147c51;
+    border-color: #40916c;
+}
+/* ....................FORM CONTAINER CSS...................... */
+.form_container {
+    height: 90%;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    padding: 26px 0px;
+    margin: 20px 15px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
+    overflow: auto;
+}
+.names {
+    display: flex;
+    justify-content: space-around;
+}
+.contact {
+    display: flex;
+    justify-content: space-around;
+}
+.labels{
+    font-size: 18px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 0px 0px 2px 0px;
+}
+.inputs {
+    height: 65px;
+    width: 400px;
+    margin: 0px 40px 20px 0px;
+    padding: 0px 10px;
+    border-radius: 8px;
+    border: 1px solid #147849;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
+}
+#previous{
+    width: 15%;
+}
+#next{
+    width: 15%;
+}
+#submit{
+    position: absolute;
+    left: 85%;
+    z-index: -1;
+    width: 15%;
+}
+#back{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 2%;
+    height: 80%;
+    width: 8%;
+    border-radius: 5px;
+    border: 2px solid white;
+    color: white;
+    background-color: #479f76;
+    text-decoration: none;
+    display: grid;
+    place-content: center;
+    font-size: 1.2rem;
+}
+#back:hover {
+    box-shadow:
+            inset 0 0 0 2px #fff,
+            /* outer white border (4px thickness) */
+            inset 0 0 0 2px #479f76;
+    background-color: #fff;
+    color: #479f76;
+    border: 2px solid #479f76;
+}
+/* .................FOOTER CONTAINER STYLE ........................... */
+.footer_container {
+    width: auto;
+    height: 375px;
+    background-color: #d1e7dd;
+}
+.footer_links {
+    width: auto;
+    height: 60%;
+    display: flex;
+    justify-content: space-around;
+    padding: 25px 100px;
+}
+.border_a {
+    color: black;
+    text-decoration: none;
+}
+.border_a:hover {
+    border-bottom: 2px solid black;
+}
+#horizontal_line {
+    height: 5px;
+    width: auto;
+    margin: 0px 125px;
+}
+.svg_a{
+    display: flex;
+    width: 60px;
+    height: 60px;
+    border-radius: 70px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+.watermarks {
+    padding-left: 110px;
+    margin-top: 15px;
+}
+/* .............................MEDIA QUERY FOR SMALL DEVICES.................................... */
+@media (max-width: 395px){
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    #nav_bar {
+        background-color: rgba(58, 177, 90, 0.2);
+        height: 65px;
+        width: 498px;
+        color: white;
+        padding-left: 45px;
+        padding-right: 30px;   
+    }
+    #nav_2 {
+        height: 55px;
+        width: 498px;
+        background-color: rgb(25, 135, 84, 0.8);   
+    }
+}
