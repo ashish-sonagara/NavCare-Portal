@@ -17,9 +17,8 @@ secondNav.get("/patientDetailForm", (req, res) => {
 })
 
 secondNav.get("/pateintInfoPortal", (req, res) => {
-    // res.sendFile(path.join(__dirname, '../', 'views', ''));
-    console.log("route to dashboard", req.url, req.method);
-})
+    res.render('patientInfoPortal', { pageTitle: "Patient Info Access Portal" });
+});
 
 secondNav.get("/manageStaff&Accounts", (req, res) => {
     res.render('manageStaff&Accounts' , {pageTitle :"Manage Staff & Accounts"});

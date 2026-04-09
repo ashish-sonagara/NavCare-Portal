@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="form_container">
-                            <form action="" method="" style="position: relative;">
+                            <form id="patientForm" novalidate style="position: relative;">
                                 <!-- THIS IS THE FIRST CONTAINER -->
                                 <div class="container">
                                     <div class="row justify-content-between">
@@ -348,10 +348,49 @@
             // }
         })
 
-        submit.addEventListener("click", () => {
-            alert("Patient Added Successfully");
-            window.location.href = "patient_detail.html";
-        })
+        // submit.addEventListener("click", () => {
+        //     alert("Patient Added Successfully");
+        //     sessionStorage.setItem("patientData", JSON.stringify(data));
+        //     window.location.href = "patient_detail.html";
+        // })
+
+    let form = document.getElementById("patientForm");
+
+    form.addEventListener("submit", function (e) {
+        // e.preventDefault();
+        console.log("method enterded ")
+
+        let data = {
+            firstname: document.getElementById("name").value,
+            lastname: document.getElementById("lastname").value,
+            age: document.getElementById("age").value,
+            gender: document.querySelector('input[name="gender"]:checked')?.value || "",
+            blood_group: document.getElementById("blood_group").value,
+
+            emergency_number: document.getElementById("emergency_number").value,
+            email: document.getElementById("email").value,
+
+            hospital_name: document.getElementById("hospital_name").value,
+            hospital_link: document.getElementById("hospital_link").value,
+            ward_name: document.getElementById("ward_name").value,
+            bed_number: document.getElementById("bed_num").value,
+            date_n_time: document.getElementById("date_n_time").value,
+            condition: document.getElementById("condition").value,
+
+            funds: document.getElementById("funds").value,
+            initial_info: document.getElementById("initial_info").value,
+            urgency: document.getElementById("urgency").value
+        };
+        console.log("data ->", data)
+        sessionStorage.setItem("patientData", JSON.stringify(data));
+
+        alert("Patient Added Successfully");
+
+        console.log("Stored Data:", data);
+
+        window.location.href = "/patientDetailForm";
+    });
+
     </script>
 </body>
 
