@@ -1,7 +1,25 @@
-<header class="bar">
-  <a class="brand" routerLink="/dashboard">NavCare</a>
-
-  <div class="who">
-    <button type="button" class="btn ghost" >Log out</button>
-  </div>
-</header>
+@if (designHeader.headerStyle() === 'ADMIN') {
+  <header class="bar admin-header">
+    <span class="brand">NavCare</span>
+    <div class="who">
+      <span class="role">ADMIN</span>
+      <button type="button" class="btn ghost" (click)="logout()">Log out</button>
+    </div>
+  </header>
+} @else if (designHeader.headerStyle() === 'STAFF') {
+  <header class="bar staff-header">
+    <span class="brand">NavCare</span>
+    <div class="who">
+      <span class="role">STAFF</span>
+      <button type="button" class="btn ghost" (click)="logout()">Log out</button>
+    </div>
+  </header>
+} @else {
+  <header class="bar patient-header">
+    <span class="brand">NavCare</span>
+    <div class="who">
+      <span class="role">PATIENT</span>
+      <button type="button" class="btn ghost" (click)="logout()">Log out</button>
+    </div>
+  </header>
+}

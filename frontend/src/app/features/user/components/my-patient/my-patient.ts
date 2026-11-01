@@ -3,7 +3,7 @@ import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-my-patient',
-  imports: [DatePipe],
+  imports: [],
   templateUrl: './my-patient.html',
   styleUrl: './my-patient.scss',
 })

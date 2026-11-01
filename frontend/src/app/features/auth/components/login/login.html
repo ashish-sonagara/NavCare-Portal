@@ -4,41 +4,42 @@
 
     <div class="field-group">
       <label for="username">User name</label>
-      <input
-        id="username"
-        type="text"
-        formControlName="username"
-        autocomplete="username"
-        placeholder="Enter your user name"
-      />
+      <input id="username" type="text" formControlName="username" autocomplete="username"
+        placeholder="Enter your user name" />
       @if (loginForm.controls.username.touched && loginForm.controls.username.hasError('required')) {
-        <small class="field-error">User name is required.</small>
+      <small class="field-error">User name is required.</small>
       }
     </div>
 
     <div class="field-group">
       <label for="password">Password</label>
-      <input
-        id="password"
-        type="password"
-        formControlName="password"
-        autocomplete="current-password"
-        placeholder="Enter your password"
-      />
+      <input id="password" type="password" formControlName="password" autocomplete="current-password"
+        placeholder="Enter your password" />
       @if (loginForm.controls.password.touched && loginForm.controls.password.hasError('required')) {
-        <small class="field-error">Password is required.</small>
+      <small class="field-error">Password is required.</small>
       } @else if (loginForm.controls.password.touched && loginForm.controls.password.hasError('minlength')) {
-        <small class="field-error">Password must be at least 8 characters.</small>
+      <small class="field-error">Password must be at least 8 characters.</small>
       }
     </div>
 
     @if (loginError()) {
-      <p class="login-error" role="alert">{{ loginError() }}</p>
+    <p class="login-error" role="alert">{{ loginError() }}</p>
     }
 
+    @if(!isLogging()) {
     <button class="login-button" type="submit">
       Login
     </button>
+    }
+    @else {
+    <button class="login-button" type="submit">
+      logging..
+      <!-- <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden"></span>
+      </div> -->
+    </button>
+    }
+
 
     <p class="signup-link">
       Don't have an account?

@@ -1,1 +1,108 @@
-<p>sign-up works!</p>
+<main class="signup-page">
+  <form class="signup-card" [formGroup]="signupForm" (ngSubmit)="onSignUp()" novalidate>
+    <h1>Create Admin Account</h1>
+
+    <div class="field-group">
+      <label for="name">Full name</label>
+      <input
+        id="name"
+        type="text"
+        formControlName="name"
+        autocomplete="name"
+        maxlength="100"
+        placeholder="Enter your full name"
+      />
+      @if (signupForm.controls.name.touched && signupForm.controls.name.hasError('required')) {
+        <small class="field-error">Full name is required.</small>
+      } @else if (signupForm.controls.name.touched && signupForm.controls.name.hasError('minlength')) {
+        <small class="field-error">Full name must be at least 2 characters.</small>
+      }
+    </div>
+
+    <div class="field-group">
+      <label for="username">User name</label>
+      <input
+        id="username"
+        type="text"
+        formControlName="username"
+        autocomplete="username"
+        maxlength="30"
+        placeholder="Choose a user name"
+      />
+      @if (signupForm.controls.username.touched && signupForm.controls.username.hasError('required')) {
+        <small class="field-error">User name is required.</small>
+      } @else if (signupForm.controls.username.touched && signupForm.controls.username.hasError('minlength')) {
+        <small class="field-error">User name must be at least 3 characters.</small>
+      } @else if (signupForm.controls.username.touched && signupForm.controls.username.hasError('pattern')) {
+        <small class="field-error">Use only letters, numbers, dots, or underscores.</small>
+      }
+    </div>
+
+    <div class="field-group">
+      <label for="phoneNumber">Phone number</label>
+      <input
+        id="phoneNumber"
+        type="tel"
+        formControlName="phoneNumber"
+        autocomplete="tel"
+        inputmode="tel"
+        placeholder="Enter your phone number"
+      />
+      @if (signupForm.controls.phoneNumber.touched && signupForm.controls.phoneNumber.hasError('required')) {
+        <small class="field-error">Phone number is required.</small>
+      } @else if (signupForm.controls.phoneNumber.touched && signupForm.controls.phoneNumber.hasError('pattern')) {
+        <small class="field-error">Enter 10 to 15 digits, optionally starting with +.</small>
+      }
+    </div>
+
+    <div class="field-group">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        autocomplete="email"
+        maxlength="254"
+        placeholder="Enter your email address"
+      />
+      @if (signupForm.controls.email.touched && signupForm.controls.email.hasError('required')) {
+        <small class="field-error">Email is required.</small>
+      } @else if (signupForm.controls.email.touched && signupForm.controls.email.hasError('email')) {
+        <small class="field-error">Enter a valid email address.</small>
+      }
+    </div>
+
+    <div class="field-group">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        formControlName="password"
+        autocomplete="new-password"
+        maxlength="128"
+        placeholder="Create a password"
+      />
+      @if (signupForm.controls.password.touched && signupForm.controls.password.hasError('required')) {
+        <small class="field-error">Password is required.</small>
+      } @else if (signupForm.controls.password.touched && signupForm.controls.password.hasError('minlength')) {
+        <small class="field-error">Password must be at least 8 characters.</small>
+      }
+    </div>
+
+    @if (signupError()) {
+      <p class="signup-error" role="alert">{{ signupError() }}</p>
+    }
+    @if (signupSuccess()) {
+      <p class="signup-success" role="status">{{ signupSuccess() }}</p>
+    }
+
+    <button class="signup-button" type="submit" [disabled]="isSubmitting()">
+      {{ isSubmitting() ? 'Creating account...' : 'Sign up' }}
+    </button>
+
+    <p class="login-link">
+      Already have an account?
+      <a routerLink="/login">Login</a>
+    </p>
+  </form>
+</main>
