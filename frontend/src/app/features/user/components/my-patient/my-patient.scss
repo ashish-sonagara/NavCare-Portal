@@ -1,0 +1,8 @@
+.cols { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); align-items: start; }
+h2 { margin-bottom: .75rem; }
+.strong { font-weight: 700; margin: 0; }
+dl { display: grid; grid-template-columns: 9rem 1fr; gap: .4rem .75rem; margin: 1rem 0; }
+dt { color: var(--ink-soft); }
+dd { margin: 0; }
+small { color: var(--ink-soft); }
+.btn { margin-right: .5rem; }

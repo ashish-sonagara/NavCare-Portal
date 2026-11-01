@@ -1,0 +1,116 @@
+:host {
+  display: block;
+}
+
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  background: var(--color-background);
+}
+
+.login-card {
+  width: min(650px, calc(100vw - 3rem));
+  padding: 3.75rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: 0 18px 45px rgba(23, 54, 45, 0.12);
+}
+
+.login-card h1 {
+  margin-bottom: .75rem;
+  text-align: left;
+  font-size: 2rem;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+}
+
+.field-group label {
+  font-weight: 700;
+}
+
+.field-group input {
+  width: 100%;
+  height: 56px;
+  padding: 0 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 7px;
+  font: inherit;
+  background: var(--color-surface);
+}
+
+.field-group input:focus {
+  border-color: var(--color-focus);
+  outline: 2px solid rgba(23, 105, 77, 0.15);
+}
+
+.field-group input.ng-invalid.ng-touched {
+  border-color: var(--color-danger);
+}
+
+.field-error,
+.login-error {
+  color: var(--color-danger);
+  font-size: .875rem;
+}
+
+.login-error {
+  margin: 0;
+  text-align: center;
+}
+
+.login-button {
+  width: 100%;
+  height: 54px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--color-primary);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+}
+
+.login-button:hover:not(:disabled) {
+  background: var(--color-primary-strong);
+}
+
+.login-button:disabled {
+  opacity: .65;
+  cursor: not-allowed;
+}
+
+.signup-link {
+  margin: 0;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.signup-link a {
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .login-page {
+    padding: 1rem;
+  }
+
+  .login-card {
+    width: 100%;
+    padding: 2rem 1.25rem;
+  }
+
+  .login-card h1 {
+    font-size: 1.6rem;
+  }
+}

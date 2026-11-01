@@ -1,0 +1,52 @@
+<!-- <div class="page">
+  @if (!loaded()) {
+    <p class="empty">Loading…</p>
+  } @else if (!patient()) {
+    <p class="empty panel">No patient is linked to your account yet.</p>
+  } @else {
+    @let p = patient()!;
+    <div class="page-head">
+      <div>
+        <h1>{{ p.name }}</h1>
+        <small>Patient ID {{ p.patientCode }} · Admitted {{ p.admittedAt | date: 'medium' }}</small>
+      </div>
+      <span class="badge" [class]="p.currentCondition">{{ p.currentCondition }}</span>
+    </div>
+
+    @if (p.surgeryRequired) {
+      <div class="error" role="alert">
+        Urgent surgery is required. A consent request will appear here.
+      </div>
+    }
+
+    <div class="cols">
+      <section class="panel">
+        <h2>Hospital</h2>
+        <p class="strong">{{ p.hospital.name }} — {{ p.hospital.branch }}</p>
+        <p>{{ p.hospital.address }}</p>
+        <dl>
+          <dt>Block</dt><dd>{{ p.block || '—' }}</dd>
+          <dt>Floor</dt><dd>{{ p.floor || '—' }}</dd>
+          <dt>Ward</dt><dd>{{ p.ward || '—' }}</dd>
+          <dt>Bed</dt><dd>{{ p.bedNumber || '—' }}</dd>
+          <dt>Emergency phone</dt><dd>{{ p.hospital.phone || '—' }}</dd>
+        </dl>
+        <a class="btn ghost" [href]="mapUrl()" target="_blank" rel="noopener">Open in maps</a>
+        @if (p.hospital.websiteUrl) {
+          <a class="btn ghost" [href]="p.hospital.websiteUrl" target="_blank" rel="noopener">Hospital website</a>
+        }
+      </section>
+
+      <section class="panel">
+        <h2>Medical information</h2>
+        <dl>
+          <dt>Injuries</dt><dd>{{ p.injuries || '—' }}</dd>
+          <dt>Diagnosis</dt><dd>{{ p.diagnosis || '—' }}</dd>
+          <dt>Treatment</dt><dd>{{ p.treatment || '—' }}</dd>
+          <dt>Doctor</dt><dd>{{ p.doctor || '—' }}</dd>
+          <dt>Department</dt><dd>{{ p.department || '—' }}</dd>
+        </dl>
+      </section>
+    </div>
+  }
+</div> -->

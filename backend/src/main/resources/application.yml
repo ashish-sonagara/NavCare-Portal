@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: navcare
+  datasource:
+    url: jdbc:mysql://localhost:3306/navcare_portal
+    username: root
+    password: Root@123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true
+
+server:
+  port: 8181
+
+navcare:
+  jwt:
+    # Base64, at least 256 bits. This is a DEV-ONLY default - always override JWT_SECRET outside local dev.
+    secret: ${JWT_SECRET:EBzPO12NWXk3Tecfohrhk9qL2OlCSiFeH9mMWcJWxOT5gU0kkNJoS7aTEuHwWhhc}
+    expiration-minutes: 480
+  cors:
+    allowed-origins: http://localhost:4200

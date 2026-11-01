@@ -1,0 +1,38 @@
+<div class="page-head">
+  <h1>Patients</h1>
+  <a class="btn" routerLink="/staff/patients/new">Add patient</a>
+</div>
+
+@if (error()) {
+  <div class="error" role="alert">{{ error() }}</div>
+} @else if (patients() === null) {
+  <p class="empty">Loading…</p>
+} @else if (patients()!.length === 0) {
+  <p class="empty panel">No patients registered yet.</p>
+} @else {
+  <div class="table-wrap">
+    <table class="data">
+      <thead>
+        <tr>
+          <th>Patient ID</th><th>Name</th><th>Age</th><th>Ward / Bed</th>
+          <th>Condition</th><th>Surgery</th><th>Family contact</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (p of patients(); track p.id) {
+          <tr>
+            <td>{{ p.patientCode }}</td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.age }}</td>
+            <td>{{ p.ward || '—' }} / {{ p.bedNumber || '—' }}</td>
+            <td><span class="badge" [class]="p.currentCondition">{{ p.currentCondition }}</span></td>
+            <td>
+              @if (p.surgeryRequired) { <span class="badge urgent">Required</span> } @else { No }
+            </td>
+            <td>{{ p.familyContactName }} · {{ p.familyContactPhone }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}

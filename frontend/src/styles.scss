@@ -1,0 +1,253 @@
+:root {
+  --color-text: #17362d;
+  --color-text-muted: #506a60;
+  --color-primary: #278c68;
+  --color-primary-strong: #17694d;
+  --color-primary-soft: #dcefe7;
+  --color-background: #edf8f3;
+  --color-surface: #ffffff;
+  --color-surface-muted: #d3e9df;
+  --color-border: #c9ddd3;
+  --color-danger: #b3261e;
+  --color-danger-soft: #fbe9e7;
+  --color-focus: #17694d;
+  --color-shadow: rgb(23 54 45 / 16%);
+  --ink: var(--color-text);
+  --ink-soft: var(--color-text-muted);
+  --brand: var(--color-primary);
+  --brand-dark: var(--color-primary-strong);
+  --brand-tint: var(--color-primary-soft);
+  --paper: var(--color-background);
+  --surface: var(--color-surface);
+  --line: var(--color-border);
+  --alert: var(--color-danger);
+  --alert-tint: var(--color-danger-soft);
+  --radius: 6px;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: var(--ink);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  line-height: 1.5;
+}
+
+a {
+  color: var(--brand);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 1.6rem;
+}
+
+h2 {
+  font-size: 1.15rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* ---- Shared building blocks ---- */
+.page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+}
+
+.page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .55rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--brand);
+  background: var(--brand);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--brand-dark);
+  }
+
+  &:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+  }
+
+  &.ghost {
+    background: transparent;
+    color: var(--brand);
+
+    &:hover {
+      background: var(--brand-tint);
+    }
+  }
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .95rem;
+
+  th,
+  td {
+    padding: .75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+  }
+
+  th {
+    background: var(--brand-tint);
+    font-weight: 600;
+    color: var(--brand-dark);
+  }
+
+  tr:last-child td {
+    border-bottom: 0;
+  }
+}
+
+.empty {
+  padding: 2rem;
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+.error {
+  background: var(--alert-tint);
+  color: var(--alert);
+  padding: .65rem .85rem;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: .1rem .55rem;
+  border-radius: 999px;
+  font-size: .8rem;
+  font-weight: 600;
+  background: var(--brand-tint);
+  color: var(--brand-dark);
+
+  &.CRITICAL,
+  &.SERIOUS,
+  &.urgent {
+    background: var(--alert-tint);
+    color: var(--alert);
+  }
+}
+
+/* ---- Forms ---- */
+.form {
+  display: grid;
+  gap: 1.25rem;
+}
+
+fieldset {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 1.25rem;
+  margin: 0;
+
+  legend {
+    font-weight: 700;
+    padding: 0 .4rem;
+    color: var(--brand-dark);
+  }
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.field {
+  display: grid;
+  gap: .3rem;
+  font-size: .9rem;
+  font-weight: 600;
+
+  input,
+  select,
+  textarea {
+    font: inherit;
+    font-weight: 400;
+    padding: .55rem .65rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #fff;
+    color: var(--ink);
+  }
+
+  input.ng-touched.ng-invalid,
+  select.ng-touched.ng-invalid {
+    border-color: var(--alert);
+  }
+
+  &.wide {
+    grid-column: 1 / -1;
+  }
+}
+
+.check {
+  display: flex;
+  gap: .6rem;
+  align-items: center;
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  gap: .75rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
