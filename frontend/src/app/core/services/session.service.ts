@@ -5,8 +5,12 @@ import { UserDTO } from '../models/logged-user.model';
 export class SessionService {
   private readonly session = sessionStorage;
 
+  readonly loggedInUser = signal<UserDTO | null>(this.getLoggedInUser());
+  readonly isLoggedIn = this.loggedInUser.asReadonly();
+
   setLoggedInUser(user: UserDTO): void {
     this.session.setItem('userDTO', JSON.stringify(user));
+    this.loggedInUser.set(user)
   }
 
   getLoggedInUser(): UserDTO | null {
@@ -14,11 +18,8 @@ export class SessionService {
     return value ? JSON.parse(value) as UserDTO : null;
   }
 
-  isLoggedIn(): boolean {
-    return this.getLoggedInUser() !== null;
-  }
-
   removeLoggedInUser(): void {
     this.session.removeItem('userDTO');
+    this.loggedInUser.set(null)
   }
 }

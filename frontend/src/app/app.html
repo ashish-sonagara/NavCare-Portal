@@ -1,5 +1,5 @@
 <main>
-    @if (isUserLoggedIn()) {
+    @if (sessionService.isLoggedIn()) {
         <app-header></app-header>
     }
     <router-outlet></router-outlet>

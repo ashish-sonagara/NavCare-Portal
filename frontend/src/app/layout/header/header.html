@@ -1,14 +1,20 @@
-@if (designHeader.headerStyle() === 'ADMIN') {
+@if (sessionService.loggedInUser()?.role === 'ADMIN') {
   <header class="bar admin-header">
-    <span class="brand">NavCare</span>
+    <a class="brand" routerLink="/about-navcare">NavCare</a>
+    <nav>
+      <a routerLink="/about-navcare" routerLinkActive="active">About NavCare</a>
+    </nav>
     <div class="who">
       <span class="role">ADMIN</span>
       <button type="button" class="btn ghost" (click)="logout()">Log out</button>
     </div>
   </header>
-} @else if (designHeader.headerStyle() === 'STAFF') {
+} @else if (sessionService.loggedInUser()?.role === 'STAFF') {
   <header class="bar staff-header">
-    <span class="brand">NavCare</span>
+    <a class="brand" routerLink="/about-navcare">NavCare</a>
+    <nav>
+      <a routerLink="/about-navcare" routerLinkActive="active">About NavCare</a>
+    </nav>
     <div class="who">
       <span class="role">STAFF</span>
       <button type="button" class="btn ghost" (click)="logout()">Log out</button>
@@ -16,7 +22,10 @@
   </header>
 } @else {
   <header class="bar patient-header">
-    <span class="brand">NavCare</span>
+    <a class="brand" routerLink="/about-navcare">NavCare</a>
+    <nav>
+      <a routerLink="/about-navcare" routerLinkActive="active">About NavCare</a>
+    </nav>
     <div class="who">
       <span class="role">PATIENT</span>
       <button type="button" class="btn ghost" (click)="logout()">Log out</button>

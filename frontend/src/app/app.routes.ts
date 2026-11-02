@@ -12,6 +12,11 @@ export const routes: Routes = [
     loadComponent: () => import('./features/auth/components/sign-up/sign-up').then((m) => m.SignUp),
   },
   {
+    path: 'about-navcare',
+    canActivate: [authGuard],
+    loadComponent: () => import('./features/about-navcare/about-navcare').then((m) => m.AboutNavCare),
+  },
+  {
     path: 'admin',
     canActivate: [authGuard, roleGuard('ADMIN')],
     loadChildren: () => import('./features/admin/admin.routes').then((m) => m.ADMIN_ROUTES),

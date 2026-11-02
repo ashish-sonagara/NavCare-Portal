@@ -10,5 +10,4 @@ import { SessionService } from './core/services/session.service';
 })
 export class App {
   readonly sessionService = inject(SessionService);
-  readonly isUserLoggedIn = signal<boolean>(this.sessionService.isLoggedIn());
 }
