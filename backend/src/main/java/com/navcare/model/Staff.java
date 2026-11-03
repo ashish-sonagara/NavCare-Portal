@@ -1,5 +1,8 @@
 package com.navcare.model;
 
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -32,7 +35,11 @@ public class Staff {
     private Role role = Role.STAFF;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "admin_id", nullable = false) // Creates admin_id foreign key in the staff table
+    @JoinColumn(name = "admin_id", nullable = false)
     private Admin admin;
+
+    @JsonFormat(pattern = "dd/MM/yyyy hh:mm")
+    @Column (nullable = false)
+    private Date createdAt;
 
 }

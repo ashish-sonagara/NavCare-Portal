@@ -1,6 +1,10 @@
 package com.navcare.model;
 
+import java.util.Date;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -34,4 +38,8 @@ public class Admin {
 
     @OneToMany(mappedBy = "admin", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Staff> staffList;
+
+    @JsonFormat(pattern = "dd/MM/yyyy hh:mm")
+    @Column (nullable = false)
+    private Date createdAt;
 }
