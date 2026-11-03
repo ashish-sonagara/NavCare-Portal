@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.navcare.model.Admin;
 
 @Repository 
-public interface AdminDAO extends JpaRepository<Admin , Long>{
+public interface AdminDAO extends JpaRepository<Admin , Integer>{
 
     Optional<Admin> findByUserName(String userName);
     Optional<Admin> findByPhoneNumber(String phoneNumber);
