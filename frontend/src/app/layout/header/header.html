@@ -1,7 +1,34 @@
-<header class="bar">
-  <a class="brand" routerLink="/dashboard">NavCare</a>
-
-  <div class="who">
-    <button type="button" class="btn ghost" >Log out</button>
-  </div>
-</header>
+@if (sessionService.loggedInUser()?.role === 'ADMIN') {
+  <header class="bar admin-header">
+    <a class="brand" routerLink="/about-navcare">NavCare</a>
+    <nav>
+      <a routerLink="/about-navcare" routerLinkActive="active">About NavCare</a>
+      <a routerLink="/admin/staff" routerLinkActive="active">Manage Staff</a>
+    </nav>
+    <div class="who">
+      <button type="button" class="btn ghost" (click)="logout()">Log out</button>
+    </div>
+  </header>
+} @else if (sessionService.loggedInUser()?.role === 'STAFF') {
+  <header class="bar staff-header">
+    <a class="brand" routerLink="/about-navcare">NavCare</a>
+    <nav>
+      <a routerLink="/about-navcare" routerLinkActive="active">About NavCare</a>
+      <a routerLink="/staff/patients" routerLinkActive="active">Manage Patients</a>
+    </nav>
+    <div class="who">
+      <button type="button" class="btn ghost" (click)="logout()">Log out</button>
+    </div>
+  </header>
+} @else {
+  <header class="bar patient-header">
+    <a class="brand" routerLink="/about-navcare">NavCare</a>
+    <nav>
+      <a routerLink="/about-navcare" routerLinkActive="active">About NavCare</a>
+      <a routerLink="/user" routerLinkActive="active">Patient Details</a>
+    </nav>
+    <div class="who">
+      <button type="button" class="btn ghost" (click)="logout()">Log out</button>
+    </div>
+  </header>
+}

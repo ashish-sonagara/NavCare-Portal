@@ -12,33 +12,25 @@ export const routes: Routes = [
     loadComponent: () => import('./features/auth/components/sign-up/sign-up').then((m) => m.SignUp),
   },
   {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: '/login'
-
-    // canActivate: [authGuard],
-    // children: [
-    //   { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
-    //   {
-    //     path: 'dashboard',
-    //     loadComponent: () => import('./features/dashboard/dashboard').then((m) => m.Dashboard),
-    //   },
-    //   {
-    //     path: 'admin',
-    //     canActivate: [roleGuard('ADMIN')],
-    //     loadChildren: () => import('./features/admin/admin.routes').then((m) => m.ADMIN_ROUTES),
-    //   },
-    //   {
-    //     path: 'staff',
-    //     canActivate: [roleGuard('STAFF')],
-    //     loadChildren: () => import('./features/staff/staff.routes').then((m) => m.STAFF_ROUTES),
-    //   },
-    //   {
-    //     path: 'user',
-    //     canActivate: [roleGuard('USER')],
-    //     loadChildren: () => import('./features/user/user.routes').then((m) => m.USER_ROUTES),
-    //   },
-    // ],
+    path: 'about-navcare',
+    canActivate: [authGuard],
+    loadComponent: () => import('./features/about-navcare/about-navcare').then((m) => m.AboutNavCare),
   },
+  {
+    path: 'admin',
+    canActivate: [authGuard, roleGuard('ADMIN')],
+    loadChildren: () => import('./features/admin/admin.routes').then((m) => m.ADMIN_ROUTES),
+  },
+  {
+    path: 'staff',
+    canActivate: [authGuard, roleGuard('STAFF')],
+    loadChildren: () => import('./features/staff/staff.routes').then((m) => m.STAFF_ROUTES),
+  },
+  {
+    path: 'user',
+    canActivate: [authGuard, roleGuard('PATIENT')],
+    loadChildren: () => import('./features/user/user.routes').then((m) => m.USER_ROUTES),
+  },
+  { path: '', pathMatch: 'full', redirectTo: '/login' },
   { path: '**', redirectTo: '' },
 ];

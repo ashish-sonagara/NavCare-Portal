@@ -1,12 +1,17 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
+import { SessionService } from '../services/session.service';
 
-/** Allows the route only for the given role; anyone else lands on the dashboard. */
 export const roleGuard =
-  (role: string): CanActivateFn =>
+  (role: 'ADMIN' | 'STAFF' | 'PATIENT'
+  ): CanActivateFn =>
   () => {
-    const userRole = globalThis.localStorage?.getItem('role');
-    return userRole === role
+    const user = inject(SessionService).getLoggedInUser();
+    if (!user) {
+      return inject(Router).createUrlTree(['/login']);
+    }
+
+    return user.role === role
       ? true
-      : inject(Router).createUrlTree(['/dashboard']);
+      : inject(Router).createUrlTree(['/login']);
   };
