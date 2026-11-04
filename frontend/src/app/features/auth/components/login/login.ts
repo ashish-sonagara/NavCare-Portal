@@ -1,7 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
-import { LoginAPIService } from '../../Service/LoginAPIService.service';
+import { Router, RouterLink } from '@angular/router';
+import { LoginAPIService } from '../../Service/login-api-service.service';
+import { LoginDTO } from '../../Model/login.model';
+import { SessionService } from '../../../../core/services/session.service';
+import { Role } from '../../../../core/enum/role.enum';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +14,12 @@ import { LoginAPIService } from '../../Service/LoginAPIService.service';
 })
 export class Login {
   private readonly formBuilder = inject(FormBuilder);
-  private loginAPIService = inject(LoginAPIService)
+  private loginAPIService = inject(LoginAPIService);
+  private sessionService = inject(SessionService);
+  private readonly router = inject(Router);
 
+  readonly Role = Role
+  isLogging = signal<boolean>(false);
   readonly loginError = signal('');
 
   readonly loginForm = this.formBuilder.nonNullable.group({
@@ -26,16 +33,37 @@ export class Login {
       return;
     }
 
-    let payload = {
-      username: this.loginForm.value.username,
-      password: this.loginForm.value.password
+    this.loginError.set('');
+    const username = this.loginForm.value.username;
+    const password = this.loginForm.value.password;
+
+    if (!username || !password) {
+      return;
+    }
+
+    this.isLogging.set(true);
+    const payload: LoginDTO = {
+      username,
+      password
     }
     
-    this.loginAPIService.Login(payload).subscribe({
+    this.loginAPIService.login(payload).subscribe({
       next: (res) => {
-        console.log('Login successful', res);
+        const data = res.data;
+        this.isLogging.set(false);
+        this.sessionService.setLoggedInUser(data);
+
+        const destination = data.role === this.Role.ADMIN
+          ? '/admin/staff'
+          : data.role === this.Role.STAFF
+            ? '/staff/patients'
+            : '/user';
+            
+        void this.router.navigateByUrl(destination);
       },
       error: (error) => {
+        this.isLogging.set(false);
+        this.loginError.set('Error while logging!');
         console.log('Login failed', error);
       }
     })

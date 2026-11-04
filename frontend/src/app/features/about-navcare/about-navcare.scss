@@ -1,0 +1,193 @@
+:host {
+  display: block;
+  min-height: calc(100vh - 58px);
+  color: #202d29;
+}
+
+.about-page {
+  background: #fff;
+}
+
+.hero {
+  max-width: 1180px;
+  min-height: 310px;
+  margin: 0 auto;
+  padding: 58px 32px 46px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.hero-copy {
+  max-width: 700px;
+}
+
+.eyebrow {
+  display: none;
+}
+
+.hero h1 {
+  margin: 0 0 10px;
+  font-size: clamp(2rem, 4vw, 2.7rem);
+  font-weight: 700;
+}
+
+.hero-copy > p:not(.eyebrow) {
+  max-width: 720px;
+  margin: 0 0 24px;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: #52615b;
+}
+
+.details-button {
+  min-width: 106px;
+  padding: 9px 14px;
+  border: 1px solid #34b97c;
+  border-radius: 6px;
+  background: #fff;
+  color: #168956;
+  cursor: pointer;
+}
+
+.hero-art {
+  flex: 0 0 330px;
+}
+
+.hero-art svg {
+  width: 100%;
+  display: block;
+}
+
+.feature-grid {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 28px 32px 40px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.feature-card {
+  min-height: 210px;
+  padding: 30px 20px 18px;
+  border: 1px solid #edf1ef;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 14px 28px rgba(29, 74, 57, .12);
+  text-align: center;
+}
+
+.card-icon {
+  width: 82px;
+  height: 82px;
+  margin: 0 auto 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  font-family: Georgia, serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #31506b;
+  background: #eef6f3;
+}
+
+.patient-icon {
+  color: #347c9b;
+}
+
+.database-icon {
+  color: #252c31;
+}
+
+.family-icon {
+  color: #2d708b;
+}
+
+.hospital-icon {
+  color: #20a875;
+}
+
+.feature-card h2 {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.45;
+  font-weight: 500;
+  color: #31546a;
+}
+
+.feature-card p {
+  margin: 8px 0 0;
+  font-size: .82rem;
+  line-height: 1.45;
+  color: #718079;
+}
+
+.about-footer {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 38px 32px 48px;
+  border-top: 1px solid #d7e2dd;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+
+.about-footer div {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-footer h2 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+}
+
+.about-footer a {
+  width: fit-content;
+  margin: 3px 0;
+  color: #303b37;
+  text-decoration: none;
+  font-size: .9rem;
+}
+
+.about-footer a:hover {
+  color: #168956;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    align-items: flex-start;
+  }
+
+  .hero-art {
+    flex-basis: 240px;
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 36px 20px;
+    flex-direction: column;
+  }
+
+  .hero-art {
+    width: 100%;
+    flex-basis: auto;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+    padding-inline: 20px;
+  }
+
+  .about-footer {
+    grid-template-columns: 1fr;
+    padding-inline: 20px;
+  }
+}

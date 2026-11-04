@@ -5,7 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-add-patient',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule],
   templateUrl: './add-patient.html',
 })
 export class AddPatient {
