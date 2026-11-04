@@ -1,5 +1,6 @@
 package com.navcare.service;
 
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +63,7 @@ public class AuthService {
     admin.setUserName(createAdmin.getUsername());
     admin.setPhoneNumber(createAdmin.getPhoneNumber());
     admin.setEmail(createAdmin.getEmail());
-    
+    admin.setCreatedAt(new Date());
     admin.setPassword(encoder.encode(createAdmin.getPassword()));
     admin.setRole(Role.ADMIN);
 

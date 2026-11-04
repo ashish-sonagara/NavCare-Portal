@@ -1,0 +1,14 @@
+<label class="field">
+  <span>{{ label() }}</span>
+  <input
+    [type]="type()"
+    [value]="value"
+    [placeholder]="placeholder()"
+    [autocomplete]="autocomplete()"
+    [disabled]="disabled"
+    (input)="updateValue($any($event.target).value)"
+    (blur)="onTouched()" />
+  @if (error()) {
+    <small class="error-text" role="alert">{{ error() }}</small>
+  }
+</label>

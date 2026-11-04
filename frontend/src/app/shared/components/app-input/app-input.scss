@@ -1,0 +1,4 @@
+:host { display: block; }
+.field { display: grid; gap: 0.35rem; }
+.field input { width: 100%; }
+.error-text { color: var(--alert); font-size: 0.82rem; }

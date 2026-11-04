@@ -1,1 +1,36 @@
-<p>add-staff works!</p>
+<main class="page">
+  <div class="page-head">
+    <h1>Add Staff</h1>
+    <a class="btn ghost" routerLink="/admin/staff">Back to staff list</a>
+  </div>
+
+  @if (error(); as message) {
+    <div class="error" role="alert">{{ message }}</div>
+  }
+
+  <form class="panel form" [formGroup]="staffForm" (ngSubmit)="save()">
+    <div class="grid">
+      <app-input label="Name" placeholder="Enter full name" autocomplete="name"
+        formControlName="name" [error]="fieldError('name')" />
+
+      <app-input label="Username" placeholder="Enter username" autocomplete="username"
+        formControlName="userName" [error]="fieldError('userName')" />
+
+      <app-input label="Phone number" type="tel" placeholder="10-digit phone number"
+        autocomplete="tel" formControlName="phoneNumber" [error]="fieldError('phoneNumber')" />
+
+      <app-input label="Email" type="email" placeholder="staff@example.com"
+        autocomplete="email" formControlName="email" [error]="fieldError('email')" />
+
+      <app-input label="Password" type="password" placeholder="At least 8 characters"
+        autocomplete="new-password" formControlName="password" [error]="fieldError('password')" />
+    </div>
+
+    <div class="actions">
+      <button class="btn" type="submit" [disabled]="saving()">
+        {{ saving() ? 'Saving...' : 'Save Staff' }}
+      </button>
+      <a class="btn ghost" routerLink="/admin/staff">Cancel</a>
+    </div>
+  </form>
+</main>
