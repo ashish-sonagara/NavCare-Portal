@@ -8,7 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.navcare.dto.ApiResponse;
-import com.navcare.dto.CreateAdminDTO;
+import com.navcare.dto.AdminDTO;
 import com.navcare.dto.LoginDTO;
 import com.navcare.dto.UserDTO;
 import com.navcare.model.Admin;
@@ -28,7 +28,7 @@ public class AuthService {
 
   private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
 
-  public ApiResponse<Void> signUp(CreateAdminDTO createAdmin) {
+  public ApiResponse<Void> signUp(AdminDTO createAdmin) {
     
     if (adminDAO.findByPhoneNumber(createAdmin.getPhoneNumber()).isPresent()) {
       return new ApiResponse<>(
