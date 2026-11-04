@@ -38,7 +38,7 @@ public class Staff {
     @JoinColumn(name = "admin_id", nullable = false)
     private Admin admin;
 
-    @JsonFormat(pattern = "dd/MM/yyyy hh:mm")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     @Column (nullable = false)
     private Date createdAt;
 

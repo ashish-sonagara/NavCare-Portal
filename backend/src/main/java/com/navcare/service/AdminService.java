@@ -2,15 +2,21 @@ package com.navcare.service;
 
 import java.security.Principal;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.navcare.dto.ApiResponse;
-import com.navcare.dto.CreateStaffDTO;
+import com.navcare.dto.StaffDTO;
 import com.navcare.dto.UserDTO;
 import com.navcare.model.Admin;
 import com.navcare.model.Role;
@@ -44,6 +50,7 @@ public class AdminService {
       UserDTO user = new UserDTO(
          staffOPT.get().getStaffID(),
          staffOPT.get().getName(),
+         staffOPT.get().getUserName(),
          staffOPT.get().getPhoneNumber(),
          staffOPT.get().getEmail(),
          staffOPT.get().getRole()
@@ -57,7 +64,7 @@ public class AdminService {
       );
    }
 
-   public ApiResponse<Void> createStaff(CreateStaffDTO staff) {
+   public ApiResponse<Void> createStaff(StaffDTO staff) {
       
       if (staffDAO.findByUserName(staff.getUserName()).isPresent()) {
          return new ApiResponse<>(
@@ -117,4 +124,41 @@ public class AdminService {
       );
 
    }
+
+   @Transactional(readOnly = true)
+   public ApiResponse<Page<StaffDTO>> fetchAllStaffs(Integer pageNo, Integer pageSize, String searchText) {
+      Pageable pageable = PageRequest.of(
+         pageNo,
+         pageSize
+      );
+
+      Page<Staff> staffPage;
+      if (searchText == null || searchText.trim().isEmpty()) {
+         staffPage = staffDAO.findAll(pageable);
+      } else {
+         staffPage = staffDAO.searchStaffs(searchText.trim(), pageable);
+      }
+
+      Page<StaffDTO> staffDTOPage = staffPage.map(staff -> {
+         StaffDTO dto = new StaffDTO();
+         dto.setStaffID(staff.getStaffID());
+         dto.setName(staff.getName());
+         dto.setUserName(staff.getUserName());
+         dto.setPhoneNumber(staff.getPhoneNumber());
+         dto.setEmail(staff.getEmail());
+         dto.setPassword(null);
+         dto.setRole(staff.getRole());
+         dto.setAdminID(staff.getAdmin().getAdminID());
+         dto.setCreatedAt(staff.getCreatedAt());
+         return dto;
+      });
+
+      return new ApiResponse<>(
+         "Staff list fetched successfully",
+         staffDTOPage,
+         HttpStatus.OK.value(),
+         true
+      );
+   }
+   
 }
