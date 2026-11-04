@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.navcare.dto.ApiResponse;
-import com.navcare.dto.CreateAdminDTO;
+import com.navcare.dto.AdminDTO;
 import com.navcare.dto.LoginDTO;
 import com.navcare.dto.UserDTO;
 import com.navcare.service.AuthService;
@@ -25,7 +25,7 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping("/registerAdmin")
-    public ResponseEntity<ApiResponse<Void>> registerAdmin(@Valid @RequestBody CreateAdminDTO createAdmin) {
+    public ResponseEntity<ApiResponse<Void>> registerAdmin(@Valid @RequestBody AdminDTO createAdmin) {
         ApiResponse<Void> response = authService.signUp(createAdmin);
         return ResponseEntity.status(response.getHttpCode()).body(response);
     }

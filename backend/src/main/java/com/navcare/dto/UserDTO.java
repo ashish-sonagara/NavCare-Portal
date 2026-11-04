@@ -12,6 +12,7 @@ public class UserDTO {
 
     private Integer userID;
     private String name;
+    private String userName;
     private String phoneNumber;
     private String email;
     private Role role;
